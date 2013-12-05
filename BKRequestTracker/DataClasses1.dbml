@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Northwind" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=BBORN-TEST\CADIE;Initial Catalog=Northwind;Integrated Security=True" SettingsObjectName="BKRequestTracker.Properties.Settings" SettingsPropertyName="NorthwindConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbl_request_catagory_001" Member="tbl_request_catagory_001s">
+    <Type Name="tbl_request_catagory_001">
+      <Column Name="catagory_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="catagory_description" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_request_catagory_001_tbl_request_001" Member="tbl_request_001s" ThisKey="catagory_id" OtherKey="request_id" Type="tbl_request_001" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_request_001" Member="tbl_request_001s">
+    <Type Name="tbl_request_001">
+      <Column Name="request_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="request_date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="request_user" Type="System.String" DbType="VarChar(250) NOT NULL" CanBeNull="false" />
+      <Column Name="request_description" Type="System.String" DbType="VarChar(1000) NOT NULL" CanBeNull="false" />
+      <Column Name="request_catagory" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="date_needed_by" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_request_catagory_001_tbl_request_001" Member="tbl_request_catagory_001" ThisKey="request_id" OtherKey="catagory_id" Type="tbl_request_catagory_001" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_instructions_001" Member="tbl_instructions_001s">
+    <Type Name="tbl_instructions_001">
+      <Column Name="instruction_id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="column_name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="instruction_description" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+</Database>

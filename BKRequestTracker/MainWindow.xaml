@@ -1,0 +1,118 @@
+﻿<Window x:Class="BKRequestTracker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" mc:Ignorable="d" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:my="clr-namespace:BKRequestTracker" Loaded="Window_Loaded" Height="446" Width="802">
+    <Window.Resources>
+        <CollectionViewSource x:Key="dataClasses1DataContextViewSource" d:DesignSource="{d:DesignInstance my:DataClasses1DataContext, CreateList=True}" />
+        <CollectionViewSource x:Key="dataClasses1DataContexttbl_request_001sViewSource" Source="{Binding Path=tbl_request_001s, Source={StaticResource dataClasses1DataContextViewSource}}" />
+        <CollectionViewSource x:Key="dataClasses1DataContexttbl_request_catagory_001sViewSource" Source="{Binding Path=tbl_request_catagory_001s, Source={StaticResource dataClasses1DataContextViewSource}}" />
+        <CollectionViewSource x:Key="dataClasses1DataContexttbl_instructions_001sViewSource" Source="{Binding Path=tbl_instructions_001s, Source={StaticResource dataClasses1DataContextViewSource}}" />
+    </Window.Resources>
+    <Grid Height="441">
+        <Grid DataContext="{StaticResource dataClasses1DataContexttbl_request_001sViewSource}" HorizontalAlignment="Left" Margin="86,12,0,0" Name="grid1" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Content="Request Reference #:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+            <Label Content="{Binding Path=request_id}" Grid.Column="1" Grid.Row="0" Height="28" HorizontalAlignment="Left" Margin="3" Name="request_idLabel" VerticalAlignment="Center" />
+        </Grid>
+        <Label Content="PRA Bankruptcy Department Work Request Form" Height="28" HorizontalAlignment="Left" Margin="299,14,0,0" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" />
+        <Grid DataContext="{StaticResource dataClasses1DataContexttbl_request_catagory_001sViewSource}" HorizontalAlignment="Left" Margin="62,80,0,0" Name="grid2" VerticalAlignment="Top" Width="409">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="162" />
+                <ColumnDefinition Width="247*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Content="catagory description:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+            <ComboBox DisplayMemberPath="catagory_description" Grid.Column="1" Height="23" HorizontalAlignment="Left" ItemsSource="{Binding}" Margin="3,3,0,3" Name="cb_catagory_description" VerticalAlignment="Center" Width="238" GotFocus="Control_GotFocus">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+        </Grid>
+        <Grid DataContext="{StaticResource dataClasses1DataContexttbl_request_001sViewSource}" HorizontalAlignment="Left" Margin="62,131,0,0" Name="grid3" VerticalAlignment="Top" Width="409" Height="91">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="165" />
+                <ColumnDefinition Width="244*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="59*" />
+            </Grid.RowDefinitions>
+            <Label Content="request description:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" Height="81" HorizontalAlignment="Left" Margin="3,4,0,6" Name="tb_request_description" Text="{Binding Path=request_description, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" VerticalAlignment="Center" Width="241" Grid.RowSpan="2" GotFocus="Control_GotFocus" />
+        </Grid>
+        <Grid DataContext="{StaticResource dataClasses1DataContexttbl_request_001sViewSource}" HorizontalAlignment="Left" Margin="62,228,0,0" Name="grid4" VerticalAlignment="Top" Width="409">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="165" />
+                <ColumnDefinition Width="244*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Content="date needed by:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+            <DatePicker Grid.Column="1" Height="25" HorizontalAlignment="Left" Margin="3,3,0,3" Name="dp_date_needed_by" SelectedDate="{Binding Path=date_needed_by, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" VerticalAlignment="Center" Width="235" GotFocus="Control_GotFocus" />
+        </Grid>
+        <Grid DataContext="{StaticResource dataClasses1DataContexttbl_request_001sViewSource}" HorizontalAlignment="Left" Margin="59,330,0,0" Name="grid6" VerticalAlignment="Top" Width="412">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="165" />
+                <ColumnDefinition Width="247*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Content="request user:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="3,3,0,3" Name="tb_request_user" Text="{Binding Path=request_user, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" VerticalAlignment="Center" Width="238" IsEnabled="True" GotFocus="Control_GotFocus" IsReadOnly="True" />
+        </Grid>
+        <Grid DataContext="{StaticResource dataClasses1DataContexttbl_instructions_001sViewSource}" HorizontalAlignment="Left" Margin="539,61,0,0" Name="grid7" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+        </Grid>
+        <Label Content="Instructions:" HorizontalAlignment="Left" Margin="512,47,0,369" VerticalAlignment="Center" />
+        <Grid DataContext="{StaticResource dataClasses1DataContexttbl_instructions_001sViewSource}" HorizontalAlignment="Left" Margin="512,78,0,0" Name="grid8" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+            <Label Content="{Binding Path=instruction_description}" Grid.Column="1" Grid.Row="0" Height="28" HorizontalAlignment="Left" Margin="3" Name="instruction_descriptionLabel" VerticalAlignment="Center" />
+        </Grid>
+        <Button Content="First" Height="23" HorizontalAlignment="Left" Margin="50,379,0,0" Name="btn_first" VerticalAlignment="Top" Width="75" Click="btn_first_Click" />
+        <Button Content="Prior" Height="23" HorizontalAlignment="Left" Margin="131,379,0,0" Name="btn_prior" VerticalAlignment="Top" Width="75" Click="btn_prior_Click" />
+        <Button Content="Next" Height="23" HorizontalAlignment="Left" Margin="315,379,0,0" Name="btn_next" VerticalAlignment="Top" Width="75" Click="btn_next_Click" />
+        <Button Content="Last" Height="23" HorizontalAlignment="Right" Margin="0,379,309,0" Name="btn_last" VerticalAlignment="Top" Width="75" Click="btn_last_Click" />
+        <Grid DataContext="{StaticResource dataClasses1DataContexttbl_request_001sViewSource}" HorizontalAlignment="Left" Margin="62,278,0,0" Name="grid5" VerticalAlignment="Top" Width="403">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="165" />
+                <ColumnDefinition Width="238*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Content="request date:" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" />
+            <TextBox Grid.Column="1" Height="23" HorizontalAlignment="Left" Margin="3,3,0,3" Name="tb_request_date" Text="{Binding Path=request_date, Mode=TwoWay, ValidatesOnExceptions=true, NotifyOnValidationError=true}" VerticalAlignment="Center" Width="229" IsEnabled="False" GotFocus="Control_GotFocus" />
+        </Grid>
+        <Button Content="Save" Height="23" HorizontalAlignment="Left" Margin="515,379,0,0" Name="bsave" VerticalAlignment="Top" Width="75" IsEnabled="False" Click="bsave_Click" />
+        <Button Content="Delete" Height="23" HorizontalAlignment="Left" Margin="515,339,0,0" Name="bdelete" VerticalAlignment="Top" Width="75" Click="bdelete_Click" />
+        <Button Content="Add" Height="23" HorizontalAlignment="Left" Margin="515,300,0,0" Name="badd" VerticalAlignment="Top" Width="75" Click="badd_Click" />
+        <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="217,378,0,0" Name="lbposition" VerticalAlignment="Top" />
+        <Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="267,378,0,0" Name="lbmaxcount" VerticalAlignment="Top" />
+        <Label Content="/" Height="28" HorizontalAlignment="Left" Margin="254,378,0,0" Name="label2" VerticalAlignment="Top" Width="21" />
+    </Grid>
+</Window>
