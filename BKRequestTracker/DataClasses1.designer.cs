@@ -36,6 +36,9 @@ namespace BKRequestTracker
     partial void Inserttbl_instructions_001(tbl_instructions_001 instance);
     partial void Updatetbl_instructions_001(tbl_instructions_001 instance);
     partial void Deletetbl_instructions_001(tbl_instructions_001 instance);
+    partial void Inserttbl_request_001(tbl_request_001 instance);
+    partial void Updatetbl_request_001(tbl_request_001 instance);
+    partial void Deletetbl_request_001(tbl_request_001 instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
@@ -76,19 +79,19 @@ namespace BKRequestTracker
 			}
 		}
 		
-		public System.Data.Linq.Table<tbl_request_001> tbl_request_001s
-		{
-			get
-			{
-				return this.GetTable<tbl_request_001>();
-			}
-		}
-		
 		public System.Data.Linq.Table<tbl_instructions_001> tbl_instructions_001s
 		{
 			get
 			{
 				return this.GetTable<tbl_instructions_001>();
+			}
+		}
+		
+		public System.Data.Linq.Table<tbl_request_001> tbl_request_001s
+		{
+			get
+			{
+				return this.GetTable<tbl_request_001>();
 			}
 		}
 	}
@@ -103,6 +106,8 @@ namespace BKRequestTracker
 		
 		private string _catagory_description;
 		
+		private EntitySet<tbl_request_001> _tbl_request_001s;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -115,6 +120,7 @@ namespace BKRequestTracker
 		
 		public tbl_request_catagory_001()
 		{
+			this._tbl_request_001s = new EntitySet<tbl_request_001>(new Action<tbl_request_001>(this.attach_tbl_request_001s), new Action<tbl_request_001>(this.detach_tbl_request_001s));
 			OnCreated();
 		}
 		
@@ -158,6 +164,19 @@ namespace BKRequestTracker
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_request_catagory_001_tbl_request_001", Storage="_tbl_request_001s", ThisKey="catagory_id", OtherKey="request_catagory")]
+		public EntitySet<tbl_request_001> tbl_request_001s
+		{
+			get
+			{
+				return this._tbl_request_001s;
+			}
+			set
+			{
+				this._tbl_request_001s.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -177,122 +196,17 @@ namespace BKRequestTracker
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_request_001")]
-	public partial class tbl_request_001
-	{
 		
-		private int _request_id;
-		
-		private System.DateTime _request_date;
-		
-		private string _request_user;
-		
-		private string _request_description;
-		
-		private int _request_catagory;
-		
-		private System.DateTime _date_needed_by;
-		
-		public tbl_request_001()
+		private void attach_tbl_request_001s(tbl_request_001 entity)
 		{
+			this.SendPropertyChanging();
+			entity.tbl_request_catagory_001 = this;
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_request_id", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
-		public int request_id
+		private void detach_tbl_request_001s(tbl_request_001 entity)
 		{
-			get
-			{
-				return this._request_id;
-			}
-			set
-			{
-				if ((this._request_id != value))
-				{
-					this._request_id = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_request_date", DbType="DateTime NOT NULL")]
-		public System.DateTime request_date
-		{
-			get
-			{
-				return this._request_date;
-			}
-			set
-			{
-				if ((this._request_date != value))
-				{
-					this._request_date = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_request_user", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
-		public string request_user
-		{
-			get
-			{
-				return this._request_user;
-			}
-			set
-			{
-				if ((this._request_user != value))
-				{
-					this._request_user = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_request_description", DbType="VarChar(1000) NOT NULL", CanBeNull=false)]
-		public string request_description
-		{
-			get
-			{
-				return this._request_description;
-			}
-			set
-			{
-				if ((this._request_description != value))
-				{
-					this._request_description = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_request_catagory", DbType="Int NOT NULL")]
-		public int request_catagory
-		{
-			get
-			{
-				return this._request_catagory;
-			}
-			set
-			{
-				if ((this._request_catagory != value))
-				{
-					this._request_catagory = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date_needed_by", DbType="DateTime NOT NULL")]
-		public System.DateTime date_needed_by
-		{
-			get
-			{
-				return this._date_needed_by;
-			}
-			set
-			{
-				if ((this._date_needed_by != value))
-				{
-					this._date_needed_by = value;
-				}
-			}
+			this.SendPropertyChanging();
+			entity.tbl_request_catagory_001 = null;
 		}
 	}
 	
@@ -381,6 +295,229 @@ namespace BKRequestTracker
 					this._instruction_description = value;
 					this.SendPropertyChanged("instruction_description");
 					this.Oninstruction_descriptionChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_request_001")]
+	public partial class tbl_request_001 : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _request_id;
+		
+		private System.DateTime _request_date;
+		
+		private string _request_user;
+		
+		private string _request_description;
+		
+		private int _request_catagory;
+		
+		private System.DateTime _date_needed_by;
+		
+		private EntityRef<tbl_request_catagory_001> _tbl_request_catagory_001;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onrequest_idChanging(int value);
+    partial void Onrequest_idChanged();
+    partial void Onrequest_dateChanging(System.DateTime value);
+    partial void Onrequest_dateChanged();
+    partial void Onrequest_userChanging(string value);
+    partial void Onrequest_userChanged();
+    partial void Onrequest_descriptionChanging(string value);
+    partial void Onrequest_descriptionChanged();
+    partial void Onrequest_catagoryChanging(int value);
+    partial void Onrequest_catagoryChanged();
+    partial void Ondate_needed_byChanging(System.DateTime value);
+    partial void Ondate_needed_byChanged();
+    #endregion
+		
+		public tbl_request_001()
+		{
+			this._tbl_request_catagory_001 = default(EntityRef<tbl_request_catagory_001>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_request_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int request_id
+		{
+			get
+			{
+				return this._request_id;
+			}
+			set
+			{
+				if ((this._request_id != value))
+				{
+					this.Onrequest_idChanging(value);
+					this.SendPropertyChanging();
+					this._request_id = value;
+					this.SendPropertyChanged("request_id");
+					this.Onrequest_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_request_date", DbType="DateTime NOT NULL")]
+		public System.DateTime request_date
+		{
+			get
+			{
+				return this._request_date;
+			}
+			set
+			{
+				if ((this._request_date != value))
+				{
+					this.Onrequest_dateChanging(value);
+					this.SendPropertyChanging();
+					this._request_date = value;
+					this.SendPropertyChanged("request_date");
+					this.Onrequest_dateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_request_user", DbType="VarChar(250) NOT NULL", CanBeNull=false)]
+		public string request_user
+		{
+			get
+			{
+				return this._request_user;
+			}
+			set
+			{
+				if ((this._request_user != value))
+				{
+					this.Onrequest_userChanging(value);
+					this.SendPropertyChanging();
+					this._request_user = value;
+					this.SendPropertyChanged("request_user");
+					this.Onrequest_userChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_request_description", DbType="VarChar(1000) NOT NULL", CanBeNull=false)]
+		public string request_description
+		{
+			get
+			{
+				return this._request_description;
+			}
+			set
+			{
+				if ((this._request_description != value))
+				{
+					this.Onrequest_descriptionChanging(value);
+					this.SendPropertyChanging();
+					this._request_description = value;
+					this.SendPropertyChanged("request_description");
+					this.Onrequest_descriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_request_catagory", DbType="Int NOT NULL")]
+		public int request_catagory
+		{
+			get
+			{
+				return this._request_catagory;
+			}
+			set
+			{
+				if ((this._request_catagory != value))
+				{
+					if (this._tbl_request_catagory_001.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.Onrequest_catagoryChanging(value);
+					this.SendPropertyChanging();
+					this._request_catagory = value;
+					this.SendPropertyChanged("request_catagory");
+					this.Onrequest_catagoryChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_date_needed_by", DbType="DateTime NOT NULL")]
+		public System.DateTime date_needed_by
+		{
+			get
+			{
+				return this._date_needed_by;
+			}
+			set
+			{
+				if ((this._date_needed_by != value))
+				{
+					this.Ondate_needed_byChanging(value);
+					this.SendPropertyChanging();
+					this._date_needed_by = value;
+					this.SendPropertyChanged("date_needed_by");
+					this.Ondate_needed_byChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_request_catagory_001_tbl_request_001", Storage="_tbl_request_catagory_001", ThisKey="request_catagory", OtherKey="catagory_id", IsForeignKey=true)]
+		public tbl_request_catagory_001 tbl_request_catagory_001
+		{
+			get
+			{
+				return this._tbl_request_catagory_001.Entity;
+			}
+			set
+			{
+				tbl_request_catagory_001 previousValue = this._tbl_request_catagory_001.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_request_catagory_001.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_request_catagory_001.Entity = null;
+						previousValue.tbl_request_001s.Remove(this);
+					}
+					this._tbl_request_catagory_001.Entity = value;
+					if ((value != null))
+					{
+						value.tbl_request_001s.Add(this);
+						this._request_catagory = value.catagory_id;
+					}
+					else
+					{
+						this._request_catagory = default(int);
+					}
+					this.SendPropertyChanged("tbl_request_catagory_001");
 				}
 			}
 		}
